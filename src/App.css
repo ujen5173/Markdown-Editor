@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+textarea {
+  width: clamp(200px, 40%, 400px);
+  min-height: 100px;
+  outline: none;
+  padding: 1em;
+}
