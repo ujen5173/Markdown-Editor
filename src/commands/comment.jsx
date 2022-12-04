@@ -18,7 +18,7 @@ export const comment = {
     });
     const state1 = api.setSelectionRange(newSelectionRange);
 
-    if (handleReverse(/^<!-- (.*?|\n)*? -->$/, api, state1, 4, 3)) {
+    if (handleReverse(/^<!-- (.*?|\n)*? -->$/, api, state1, 4, 3, 1)) {
       return;
     }
 
@@ -27,7 +27,7 @@ export const comment = {
     // Adjust the selection to not contain the **
     api.setSelectionRange({
       start: state2.selection.end - 9 - state1.selectedText.length,
-      end: state2.selection.end + 8,
+      end: state2.selection.end,
     });
   },
   icon: (

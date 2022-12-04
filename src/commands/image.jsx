@@ -35,8 +35,7 @@ export const image = {
     // Adjust the selection to not contain the **
     api.setSelectionRange({
       start: state1.selection.start + 4,
-      // end: 5 + state1.selection.start + imageTemplate.length,
-      end: 4 + state1.selection.end + imageTemplate.length,
+      end: 4 + state1.selection.start + imageTemplate.length,
     });
   },
 };

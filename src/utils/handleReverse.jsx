@@ -7,7 +7,7 @@ const handleReverse = (regex, api, state, start, end) => {
     );
     api.setSelectionRange({
       start: state.selection.start,
-      end: state.selection.end - 1,
+      end: state.selection.end - (start - end + (start + end)),
     });
     return true;
   }

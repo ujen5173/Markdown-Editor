@@ -1,11 +1,13 @@
-import { useContext, useReducer, useRef, useEffect } from "react";
+import { useReducer, useRef, useEffect } from "react";
 import { TextAreaCommandOrchestrator } from "./commands";
 import handleKeyDown from "./components/handleKeyDown";
 import shortcutsHandle from "./components/shortcuts";
 import { EditorContext, reducer } from "./Context";
 import { getCommands, getExtraCommands } from "./commands";
+import Toolbar from "./components/Toolbar";
 
 const Editor = ({
+  value,
   defaultTabEnable = false,
   fullscreen = false,
   preview = false,
@@ -13,11 +15,10 @@ const Editor = ({
   tabSize = 2,
 }) => {
   const textRef = useRef(null);
-  const { markdown } = useContext(EditorContext);
   const commands = getCommands();
   const extraCmds = getExtraCommands();
   const [state, dispatch] = useReducer(reducer, {
-    markdown: "",
+    markdown: value,
     defaultTabEnable,
     commands: commands,
     extraCommands: extraCmds,
@@ -66,14 +67,16 @@ const Editor = ({
 
   return (
     <EditorContext.Provider value={{ ...state, dispatch }}>
-      <div className="container">
+      <div className="container relative">
+        <Toolbar />
+
         <textarea
           autoComplete="off"
           autoCorrect="off"
           autoCapitalize="off"
           spellCheck={false}
           ref={textRef}
-          // value={markdown}
+          value={state.markdown}
           onChange={(e) => {
             dispatch && dispatch({ markdown: e.target.value });
             onChange && onChange(e);
@@ -85,3 +88,5 @@ const Editor = ({
 };
 
 export default Editor;
+
+// Link ma url ma

@@ -27,24 +27,6 @@ export const bold = {
     });
 
     const state1 = api.setSelectionRange(newSelectionRange);
-    /* !Reverese algorithm
-      const regexWithoutSpace = /^\*\*.*\*\*$/;
-      const regexWithSpace = /^\*\* .* \*\*$/;
-
-      if (
-        state1.selectedText.match(regexWithoutSpace) ||
-        state1.selectedText.match(regexWithSpace)
-      ) {
-        api.replaceSelection(
-          state1.selectedText.slice(2, state1.selectedText.length - 2).trim()
-        );
-        api.setSelectionRange({
-          start: state1.selection.start,
-          end: state1.selection.end - 4,
-        });
-        return;
-      }
-    */
 
     if (handleReverse(/^\*\*.*\*\*$/, api, state1, 2, 2)) {
       return;

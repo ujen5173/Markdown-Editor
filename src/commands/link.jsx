@@ -37,8 +37,13 @@ export const link = {
 
     api.setSelectionRange({
       start:
-        state1.selectedText.length > 0 ? state1.selectedText.length + 3 : 1,
-      end: state1.selectedText.length > 0 ? state1.selection.end + 6 : 1,
+        state1.selectedText.length > 0
+          ? 1 + state.selection.start + state.selectedText.length + 2
+          : state.selection.start + 1,
+      end:
+        state1.selectedText.length > 0
+          ? 1 + state.selection.end + 5
+          : state.selection.end + 1,
     });
   },
 };

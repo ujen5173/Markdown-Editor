@@ -6,7 +6,7 @@ export const italic = {
   name: "italic",
   keyCommand: "italic",
   shortcuts: "ctrlcmd+i",
-  value: "* *",
+  value: "_ _",
   buttonProps: {
     "aria-label": "Add italic text (ctrl + i)",
     title: "Add italic text (ctrl + i)",
@@ -33,16 +33,16 @@ export const italic = {
     });
     const state1 = api.setSelectionRange(newSelectionRange);
 
-    if (handleReverse(/^\*(.*)*$/, api, state1, 1, 1)) {
+    if (handleReverse(/^_.*_$/, api, state1, 1, 1)) {
       return;
     }
 
     // Replaces the current selection with the italic mark up
-    const state2 = api.replaceSelection(`*${state1.selectedText}*`);
+    const state2 = api.replaceSelection(`_${state1.selectedText}_`);
     // Adjust the selection to not contain the *
     api.setSelectionRange({
       start: state2.selection.end - 2 - state1.selectedText.length,
-      end: state2.selection.end + 1,
+      end: state2.selection.end,
     });
   },
 };
